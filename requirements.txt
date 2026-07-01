@@ -1,4 +1,3 @@
 streamlit
 numpy
 transformers
-tensorflow-cpu
