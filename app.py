@@ -1,7 +1,7 @@
 import os
 import streamlit as st
 import numpy as np
-from transformers import BertTokenizer, BertModel
+from transformers import BertTokenizer, TFBertModel
 
 st.set_page_config(page_title="Fake News Detector", page_icon="📰", layout="centered")
 
@@ -17,11 +17,11 @@ def sigmoid(x):
 
 @st.cache_resource(show_spinner="Loading BERT embeddings and weights...")
 def load_models():
-    # 1. Load Tokenizer & PyTorch BERT base
+    # 1. Load Tokenizer & BERT base
     tokenizer = BertTokenizer.from_pretrained("bert-base-uncased")
-    bert_model = BertModel.from_pretrained("bert-base-uncased") # <-- Changed here too
+    bert_model = TFBertModel.from_pretrained("bert-base-uncased")
     
-    # 2. Load the raw NumPy matrix weights dictionary
+    # 2. Load the raw NumPy matrix weights dictionary (allow_pickle is required for objects)
     raw_weights = np.load(WEIGHTS_PATH, allow_pickle=True).item()
     
     return tokenizer, bert_model, raw_weights
