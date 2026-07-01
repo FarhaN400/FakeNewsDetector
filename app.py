@@ -1,7 +1,6 @@
 import os
 import streamlit as st
 import numpy as np
-import tensorflow as tf
 from transformers import BertTokenizer, TFBertModel
 
 st.set_page_config(page_title="Fake News Detector", page_icon="📰", layout="centered")
